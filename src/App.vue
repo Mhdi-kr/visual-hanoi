@@ -1,59 +1,95 @@
 <template>
   <div class="full-height-container">
-    <div id="app" class="columns hanoi-container has-text-centered">
+    <div id="app" class="columns hanoi-container has-text-centered" style="align-items:flex-end !important;">
       <section id="A" class="column">
-        <draggable v-model="myArray">
-          <transition-group>
-            <div v-for="element in myArray" :key="element.id" class="card mb-2 py-1 has-background-info">
-              {{element.name}}
+            <div v-for="element in A.slice().reverse()" :key="element" class="card mb-2 py-1 has-background-info has-text-white">
+              {{element}}
             </div>
-          </transition-group>
-        </draggable>
       </section>
       <section id="B" class="column">
-        <draggable v-model="myArray">
-          <transition-group>
-            <div v-for="element in myArray" :key="element.id" class="card mb-2 py-1 has-background-info">
-              {{element.name}}
+            <div v-for="element in B.slice().reverse()" :key="element" class="card mb-2 py-1 has-background-info has-text-white">
+              {{element}}
             </div>
-          </transition-group>
-        </draggable>
       </section>
       <section id="C" class="column">
-        <draggable v-model="myArray">
-          <transition-group>
-            <div v-for="element in myArray" :key="element.id" class="card mb-2 py-1 has-background-info">
-              {{element.name}}
+            <div v-for="element in C.slice().reverse()" :key="element" class="card mb-2 py-1 has-background-info has-text-white">
+              {{element}}
             </div>
-          </transition-group>
-        </draggable>
       </section>
     </div>
+    <button @click="solve">do</button>
   </div>
 </template>
 
 <script>
-import draggable from 'vuedraggable'
+
+async function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 export default {
   name: 'App',
-  components: {
-    draggable,
+  methods: {
+    solve: async function () {
+      let popped;
+      for (let i = 0; i < this.instructions.length; i++) {
+        switch (this.instructions[i].from) {
+          case "A":
+            popped = this.A.pop()
+            break
+          case "B":
+            popped = this.B.pop()
+            break
+          case "C":
+            popped = this.C.pop()
+            break
+        }
+        switch (this.instructions[i].to) {
+          case "A":
+            this.A.push(popped)
+            break
+          case "B":
+            this.B.push(popped)
+            break
+          case "C":
+            this.C.push(popped)
+            break
+        }
+        await sleep(1000)
+      }
+    },
+    move: function (){
+      setTimeout(()=>{
+
+      })
+    }
   },
   data: () => ({
-    myArray: [
-      {
-        id:123,
-        name:'asdasd'
-      },
-      {
-        id:1234,
-        name:'asdasdasd'
-      },
-      {
-        id:1233,
-        name:'asdasdasdas'
-      }
-    ]
+    instructions: [
+      { from: 'A', to: 'C' },
+      { from: 'B', to: 'C' },
+      { from: 'B', to: 'A' },
+      { from: 'C', to: 'B' },
+      { from: 'C', to: 'A' },
+      { from: 'B', to: 'A' },
+      { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' },
+      { from: 'B', to: 'C' },
+      { from: 'A', to: 'B' },
+      { from: 'C', to: 'A' },
+      { from: 'C', to: 'B' },
+      { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' },
+      { from: 'B', to: 'C' },
+      { from: 'B', to: 'A' },
+      { from: 'C', to: 'A' },
+      { from: 'B', to: 'C' },
+      { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' },
+      { from: 'B', to: 'C' }
+    ],
+    A: [4,2],
+    B: [3,1],
+    C: []
   }),
 }
 </script>
