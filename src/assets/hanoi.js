@@ -10,9 +10,8 @@ const C = {
     name: 'C',
     stack: []
 }
-history = []
 let assumption = true
-
+let history = []
 const extendedHanoi = function (n,A,B,C){
     if (n === 1 ){
         move(A,C)
@@ -42,7 +41,6 @@ const move = function (A,B){
     history.push({
         from: A.name,
         to: B.name,
-        disk: popped
     })
     printState()
 }

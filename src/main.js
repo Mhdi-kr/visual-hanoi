@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import 'bulma/bulma.sass'
-import 'animate.css'
+import 'animate.css/animate.min.css'
+import 'font-awesome/css/font-awesome.min.css'
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -1,36 +1,47 @@
 <template>
-  <div class="full-height-container">
-    <div id="app" class="columns hanoi-container has-text-centered" style="align-items:flex-end !important;">
-      <section id="A" class="column">
-            <div v-for="element in A.slice().reverse()" :key="element" class="card mb-2 py-1 has-background-info has-text-white">
-              {{element}}
-            </div>
-      </section>
-      <section id="B" class="column">
-            <div v-for="element in B.slice().reverse()" :key="element" class="card mb-2 py-1 has-background-info has-text-white">
-              {{element}}
-            </div>
-      </section>
-      <section id="C" class="column">
-            <div v-for="element in C.slice().reverse()" :key="element" class="card mb-2 py-1 has-background-info has-text-white">
-              {{element}}
-            </div>
-      </section>
+  <section style="height: 100vh">
+    <div class="full-height-container">
+      <div id="app" class="columns hanoi-container has-text-centered is-align-items-flex-end">
+        <section id="A" class="column is-align-items-flex-start">
+          <disk v-for="(element) in A.slice().reverse()" :key="element" :index="element"/>
+        </section>
+        <section id="B" class="column is-align-items-flex-start">
+          <disk v-for="(element) in B.slice().reverse()" :key="element" :index="element"/>
+        </section>
+        <section id="C" class="column is-align-items-flex-start">
+          <disk v-for="(element) in C.slice().reverse()" :key="element" :index="element"/>
+        </section>
+      </div>
     </div>
-    <button @click="solve">do</button>
-  </div>
+    <div class="panels card is-rounded px-4 is-flex">
+      <button class="button mr-1 is-primary" @click="settings" style="top: 50px">
+        <i class="fa fa-cog"></i>
+      </button>
+      <button class="button is-fullwidth is-primary" :class="{ 'is-loading':isSolving }" @click="solve" style="top: 50px">
+        <i class="fa fa-play" v-if="!isSolving"></i>
+      </button>
+    </div>
+  </section>
 </template>
 
 <script>
+
+import disk from "@/components/disk";
 
 async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 export default {
   name: 'App',
+  components: {
+    disk
+  },
   methods: {
+    settings: function (){
+    },
     solve: async function () {
       let popped;
+      this.isSolving = true
       for (let i = 0; i < this.instructions.length; i++) {
         switch (this.instructions[i].from) {
           case "A":
@@ -54,8 +65,9 @@ export default {
             this.C.push(popped)
             break
         }
-        await sleep(1000)
+        await sleep(750)
       }
+      this.isSolving = false
     },
     move: function (){
       setTimeout(()=>{
@@ -87,21 +99,36 @@ export default {
       { from: 'A', to: 'C' },
       { from: 'B', to: 'C' }
     ],
+    initial: {
+      A: [4,2],
+      B: [3,1],
+      C: []
+    },
     A: [4,2],
     B: [3,1],
-    C: []
+    C: [],
+    isSolving: false,
   }),
 }
 </script>
 
 <style>
 .full-height-container {
-  height: 100vh;
+  background-color: aliceblue;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 .hanoi-container {
   width: 700px;
+  height: 700px;
+  padding-bottom: 300px;
+}
+.panels {
+  width: 500px;
+  margin: auto;
+  height: 130px;
+  bottom: 200px;
 }
 </style>
