@@ -25,7 +25,7 @@
 </template>
 
 <script>
-
+// import HanoiSolver from 'assets/complexHanoi'
 import disk from "@/components/disk";
 
 async function sleep(ms) {
@@ -65,7 +65,7 @@ export default {
             this.C.push(popped)
             break
         }
-        await sleep(750)
+        await sleep(500)
       }
       this.isSolving = false
     },
@@ -77,36 +77,41 @@ export default {
   },
   data: () => ({
     instructions: [
-      { from: 'A', to: 'C' },
-      { from: 'B', to: 'C' },
-      { from: 'B', to: 'A' },
-      { from: 'C', to: 'B' },
-      { from: 'C', to: 'A' },
-      { from: 'B', to: 'A' },
-      { from: 'A', to: 'B' },
-      { from: 'A', to: 'C' },
-      { from: 'B', to: 'C' },
-      { from: 'A', to: 'B' },
-      { from: 'C', to: 'A' },
-      { from: 'C', to: 'B' },
-      { from: 'A', to: 'B' },
-      { from: 'A', to: 'C' },
-      { from: 'B', to: 'C' },
-      { from: 'B', to: 'A' },
-      { from: 'C', to: 'A' },
-      { from: 'B', to: 'C' },
-      { from: 'A', to: 'B' },
-      { from: 'A', to: 'C' },
-      { from: 'B', to: 'C' }
+      { from: 'C', to: 'B' }, { from: 'A', to: 'C' },
+      { from: 'B', to: 'A' }, { from: 'B', to: 'C' },
+      { from: 'A', to: 'C' }, { from: 'C', to: 'A' },
+      { from: 'C', to: 'B' }, { from: 'A', to: 'B' },
+      { from: 'C', to: 'A' }, { from: 'B', to: 'C' },
+      { from: 'B', to: 'A' }, { from: 'C', to: 'A' },
+      { from: 'C', to: 'B' }, { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' }, { from: 'B', to: 'C' },
+      { from: 'A', to: 'B' }, { from: 'C', to: 'A' },
+      { from: 'C', to: 'B' }, { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' }, { from: 'B', to: 'C' },
+      { from: 'B', to: 'A' }, { from: 'C', to: 'A' },
+      { from: 'B', to: 'C' }, { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' }, { from: 'B', to: 'C' },
+      { from: 'B', to: 'A' }, { from: 'C', to: 'A' },
+      { from: 'C', to: 'B' }, { from: 'A', to: 'B' },
+      { from: 'C', to: 'A' }, { from: 'B', to: 'C' },
+      { from: 'B', to: 'A' }, { from: 'C', to: 'A' },
+      { from: 'B', to: 'C' }, { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' }, { from: 'B', to: 'C' },
+      { from: 'A', to: 'B' }, { from: 'C', to: 'A' },
+      { from: 'C', to: 'B' }, { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' }, { from: 'B', to: 'C' },
+      { from: 'B', to: 'A' }, { from: 'C', to: 'A' },
+      { from: 'B', to: 'C' }, { from: 'A', to: 'B' },
+      { from: 'A', to: 'C' }, { from: 'B', to: 'C' }
     ],
     initial: {
       A: [4,2],
       B: [3,1],
       C: []
     },
-    A: [4,2],
-    B: [3,1],
-    C: [],
+    A: [1,4],
+    B: [2,5],
+    C: [3,6],
     isSolving: false,
   }),
 }

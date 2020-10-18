@@ -1,0 +1,4 @@
+- implement algorithm
+- integrate algorithm with the UI
+- UI implementation for config
+- update README with a gif and other details

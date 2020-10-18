@@ -1,6 +1,6 @@
 <template>
-  <div class="card mb-2 py-1 has-background-info has-text-white animate__animated " :style="'width:' + 50*index + 'px;margin: auto;'" :class="{'animate__fadeInDown animate__faster': isShown, 'animate__fadeOutUp': !isShown}">
-    <p class="is-size-5">{{ index }}</p>
+  <div class="card mb-2 py-1 has-background-info has-text-white animate__animated " :style="'width:' + ( 200 - 20*index ) + 'px;margin: auto;'" :class="{'animate__fadeInDown animate__faster': isShown, 'animate__fadeOutUp': !isShown}">
+    <p class="is-size-5">{{ 7 - index }}</p>
   </div>
 </template>
 <script>
