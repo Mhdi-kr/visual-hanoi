@@ -1,7 +1,7 @@
 <template>
   <section style="height: 100vh">
     <div class="full-height-container">
-      <div class="about" style="text-align:center">
+      <div class="about" style="text-align:center" v-if="firstTime">
         <h1>Complex Hanoi Solver visualization</h1>
         <p>by <strong>Mahdi Karimi</strong> october 2020</p>
       </div>
@@ -148,6 +148,7 @@ export default {
   },
   methods: {
     apply() {
+      this.firstTime = false
       if (this.input < 8 && this.input > 0) {
         this.diskPerColumn = parseInt(this.input);
         this.instructions = null;
@@ -219,6 +220,7 @@ export default {
     diskPerColumn: 1,
     input: 1,
     isSolving: false,
+    firstTime: true,
     appState: "config",
   }),
 };
