@@ -1,4 +1,4 @@
-export default class HanoiSolver {
+class HanoiSolver {
     constructor(n) {
         console.log(`for ${n} we have:`)
         let filler = 1;
@@ -61,3 +61,4 @@ export default class HanoiSolver {
         this.printState()
     }
 }
+new HanoiSolver(1)
